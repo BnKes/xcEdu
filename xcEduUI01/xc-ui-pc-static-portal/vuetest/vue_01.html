@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.js测试程序</title>
+    <script src="../webpacktest01/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    {{name}}<!--MVV的view层-->
+</div>
+</body>
+<script>
+    //编写MMVM中的VM(ViewModel)部分及model部分
+    //整体处理数据的是VM
+    var VM = new Vue({
+        el: "#app", //表示vm接管了app区域
+        data:{      //model,数据
+            name: '黑马'
+        }
+    });
+</script>
+</html>

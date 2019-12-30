@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.js测试程序</title>
+</head>
+<body>
+<div id="app">
+    <a v-bind:href="url">
+        <span v-text="name"></span>
+    </a>
+    <input type="text" v-model="num1"/> +
+    <input type="text" v-model="num2"/>=
+    <!--{{Number.parseInt(num1)+Number.parseInt(num2)}}-->
+    <span v-text="result"></span>
+    <button v-on:click="change">计算</button>
+    <div v-bind:style="{ fontSize: size + 'px' }">javaEE培训</div>
+    javaEE培训+
+    javaEE培训
+    <div v-bind:style="{ fontSize: size + 'px' }">javaEE培训</div>
+</div>
+</body>
+<script src="vue.min.js"></script>
+<script>
+    //编写MMVM中的VM(ViewModel)部分及model部分
+    //整体处理数据的是VM
+    var VM = new Vue({
+        el: "#app", //表示vm接管了app区域
+        data:{      //model,数据
+            name: '黑马',
+            num1: 0,
+            num2: 0,
+            result: 0,
+            url: 'www.baidu.com',
+            size: 11
+
+        },
+        methods:{
+            change:function () {
+                this.result = Number.parseInt(this.num1)+Number.parseInt(this.num2)//调用自己VM里面的对象要用this.
+            }
+        }
+    });
+</script>
+</html>
