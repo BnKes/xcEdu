@@ -18,6 +18,7 @@ export const page_add = params =>{
   return http.requestPost(apiUrl+'/cms/page/add',params)
 }
 
+
 //根据id查询页面
 export const page_get = id =>{
   return http.requestGet(apiUrl+'/cms/page/get/'+id)
@@ -28,7 +29,7 @@ export const page_edit = (id,params) =>{
   return http.requestPut(apiUrl+'/cms/page/edit/'+id,params)
 }
 
-//删除提交
+//删除
 export const page_del = (id) =>{
   return http.requestDelete(apiUrl+'/cms/page/del/'+id)
 }

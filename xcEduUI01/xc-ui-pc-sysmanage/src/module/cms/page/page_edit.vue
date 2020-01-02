@@ -167,6 +167,10 @@
         {
           templateId:'5a962bf8b00ffc514038fafa',
           templateName:'轮播图'
+        },
+        {
+          templateId:'5e0d7b3fc9a37b1b449ead8a',
+          templateName:'测试'
         }
       ]
     }

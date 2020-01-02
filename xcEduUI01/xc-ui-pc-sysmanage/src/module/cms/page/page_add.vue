@@ -36,6 +36,9 @@
       <el-form-item label="物理路径" prop="pagePhysicalPath">
         <el-input v-model="pageForm.pagePhysicalPath" auto-complete="off" ></el-input>
       </el-form-item>
+      <el-form-item label="数据Url" prop="dataUrl">
+        <el-input v-model="pageForm.dataUrl" auto-complete="off" ></el-input>
+      </el-form-item>
 
       <el-form-item label="类型">
         <el-radio-group v-model="pageForm.pageType">
@@ -105,7 +108,7 @@
                 if (res.success) {
                   this.$message.success("新增成功");  //提示增加成功
                   this.$refs['pageForm'].resetFields(); //成功后清空表单
-                } else if (res.message) {
+                } else if (res.message) {   //如果返回结果里有message
                   this.$message.error(res.message)
                 } else {
                   this.$message.error("提交失败")
