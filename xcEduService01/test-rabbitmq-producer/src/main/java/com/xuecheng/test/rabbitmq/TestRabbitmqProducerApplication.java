@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @create 2018-06-17 20:46
  **/
 @SpringBootApplication
-public class TestRabbitmqApplication {
+public class TestRabbitmqProducerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(TestRabbitmqApplication.class,args);
+        SpringApplication.run(TestRabbitmqProducerApplication.class,args);
     }
 }

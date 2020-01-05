@@ -48,6 +48,10 @@
             size="small" type="text"
             @click="preview(page.row.pageId)">页面预览
           </el-button>
+          <el-button
+            size="small" type="text"
+            @click="postPage(page.row.pageId)">发布
+          </el-button>
         </template>
 
       </el-table-column>
@@ -105,24 +109,39 @@
           }
         })
       },
-      del:function (pageId) {
-        this.$confirm('您确认删除吗?', '提示', { }).then(() => {
+      del: function (pageId) {
+        this.$confirm('您确认删除吗?', '提示', {}).then(() => {
           //调用服务端接口
-          cmsApi.page_del(pageId).then(res=>{
+          cmsApi.page_del(pageId).then(res => {
 
-            if(res.success){
+            if (res.success) {
               this.$message.success("删除成功")
               //刷新页面
               this.query()
-            }else{
+            } else {
               this.$message.error("删除失败")
             }
           })
         })
       },
-      preview:function (pageId) {
+      preview: function (pageId) {
         //打开浏览器窗口
-        window.open("http://localhost:31001/cms/preview/"+pageId);
+        window.open("http://localhost:31001/cms/preview/" + pageId);
+      },
+      postPage: function (pageId) {
+        this.$confirm('您确认发布吗?', '提示', {}).then(() => {
+          //调用服务端接口
+          cmsApi.page_postPage(pageId).then(res => {
+            if (res.success) {
+              console.log('发布页面id=' + pageId);
+              this.$message.success("发布成功")
+              //刷新页面
+              // this.query()
+            } else {
+              this.$message.error("发布失败")
+            }
+          })
+        })
       }
     },
       created() {
