@@ -96,6 +96,5 @@ public class CourseService {
         }
         Teachplan teachplan = teachplanList.get(0);
         return teachplan.getId();
-
     }
 }

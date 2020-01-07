@@ -24,8 +24,8 @@ export const findTeachplanList = courseid => {
   return http.requestQuickGet(apiUrl + '/course/teachplan/list/' + courseid)
 }
 /* 添加课程计划 */
-export const addTeachplan = teachplah => {
-  return http.requestPost(apiUrl + '/course/teachplan/add', teachplah)
+export const addTeachplan = teachplan => {
+  return http.requestPost(apiUrl + '/course/teachplan/add', teachplan)
 }
 
 // 保存课程图片地址到课程数据 库
