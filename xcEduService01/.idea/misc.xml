@@ -19,6 +19,7 @@
         <option value="$PROJECT_DIR$/xc-service-manage-course/pom.xml" />
         <option value="$PROJECT_DIR$/xc-service-manage-cms-client/pom.xml" />
         <option value="$PROJECT_DIR$/xc-service-manager-cms/pom.xml" />
+        <option value="$PROJECT_DIR$/test-fastdfs/pom.xml" />
       </list>
     </option>
   </component>
