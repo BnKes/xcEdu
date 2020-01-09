@@ -50,8 +50,8 @@ let sysConfig = require('@/../config/sysConfig')
         total: 0,
         courses: [
           {
-            id: 'test01',
-            name: 'test01',
+            id: '4028e58161bcf7f40161bcf8b77c0000',
+            name: 'spring cloud实战',
             pic: ''
           },
           {

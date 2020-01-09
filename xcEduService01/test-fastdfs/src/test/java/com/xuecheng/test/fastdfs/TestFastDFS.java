@@ -36,10 +36,10 @@ public class TestFastDFS {
             StorageClient1 storageClient1 = new StorageClient1(trackerServer,storeStorage);
             //向stroage服务器上传文件
             //本地文件的路径
-            String filePath = "C:\\Users\\intern\\Desktop\\1.png";
+            String filePath = "C:\\Users\\intern\\Desktop\\dc2125c8dcc969117fa0d5af4bfacad4 - 副本.jpg";
             //上传成功后拿到文件Id
-            String fileId = storageClient1.upload_file1(filePath, "png", null);//group1/M00/00/00/wKgITV4VY3iAT2kSAAJSKvXp5nk163.png
-            System.out.println(fileId);
+            String fileId = storageClient1.upload_file1(filePath, "jpg", null);//group1/M00/00/00/wKgITV4VY3iAT2kSAAJSKvXp5nk163.png
+            System.out.println(fileId);//group1/M00/00/00/wKgITV4WjNGAT67PAAEif0mPQ38833.jpg
 
         } catch (Exception e) {
             e.printStackTrace();

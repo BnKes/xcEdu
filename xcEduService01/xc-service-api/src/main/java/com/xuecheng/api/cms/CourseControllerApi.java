@@ -14,4 +14,7 @@ public interface CourseControllerApi {
     @ApiOperation("新增课程")
     public ResponseResult addTeachplan(Teachplan teachplan);
 
+    @ApiOperation("添加课程图片信息")
+    public ResponseResult addCoursePic(String courseId, String pic);
+
 }
