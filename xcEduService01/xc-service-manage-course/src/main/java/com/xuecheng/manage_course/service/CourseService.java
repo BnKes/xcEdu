@@ -116,4 +116,18 @@ public class CourseService {
         coursePicRepository.save(coursePic);
         return new ResponseResult(CommonCode.SUCCESS);
     }
+
+    public CoursePic findCoursepic(String courseId) {
+        Optional<CoursePic> optional = coursePicRepository.findById(courseId);
+        return optional.get();
+    }
+
+    public ResponseResult deleteCoursePic(String courseId) {
+        try {
+            coursePicRepository.deleteById(courseId);
+            return new ResponseResult(CommonCode.SUCCESS);
+        }catch (Exception ex){
+          return new ResponseResult(CommonCode.FAIL);
+        }
+    }
 }
