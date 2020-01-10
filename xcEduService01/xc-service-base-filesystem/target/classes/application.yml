@@ -6,8 +6,8 @@ spring:
 #mongo配置
   data:
     mongodb:
-#      uri:  mongodb://root:root@192.168.8.77:27017
-      uri:  mongodb://root:root@192.168.1.148:27017
+      uri:  mongodb://root:root@192.168.8.77:27017
+#      uri:  mongodb://root:root@192.168.1.148:27017
       database: xc_cms
 #SpringMVC上传文件配置
   servlet:
@@ -19,7 +19,7 @@ spring:
       # 上传文件的临时目录
       location:
       # 最大支持文件大小
-      max-file-size: 1MB
+      max-file-size: 10MB
       # 最大支持请求大小
       max-request-size: 30MB
 xuecheng:
@@ -27,4 +27,15 @@ xuecheng:
     connect_timeout_in_seconds: 5
     network_timeout_in_seconds: 30
     charset: UTF-8
-    tracker_servers: 192.168.1.149:22122 #多个 trackerServer中间以逗号分隔
+#    tracker_servers: 192.168.1.149:22122 #多个 trackerServer中间以逗号分隔
+    tracker_servers: 192.168.8.77:22122 #多个 trackerServer中间以逗号分隔
+eureka:
+  client:
+    registerWithEureka: true #服务注册开关
+    fetchRegistry: true #服务发现开关
+    serviceUrl: #Eureka客户端与Eureka服务端进行交互的地址，多个中间用逗号分隔
+      defaultZone: ${EUREKA_SERVER:http://localhost:50101/eureka/,http://localhost:50102/eureka/}
+    instance:
+      prefer-ip-address: true #将自己的ip地址注册到Eureka服务中
+      ip-address: ${IP_ADDRESS:127.0.0.1}
+      instance-id: ${spring.application.name}:${server.port} #指定实例id

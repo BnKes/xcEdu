@@ -15,6 +15,7 @@ public class FileSystemController implements FileSystemControllerApi {
     @Autowired
     FileSystemService fileSystemService;
 
+    //上传图片
     @Override
     @PostMapping("/upload")
     public UploadFileResult upload(MultipartFile multipartFile, String filetag, String businesskey, String metadata) {

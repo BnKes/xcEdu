@@ -117,11 +117,13 @@ public class CourseService {
         return new ResponseResult(CommonCode.SUCCESS);
     }
 
+    //查询课程信息
     public CoursePic findCoursepic(String courseId) {
         Optional<CoursePic> optional = coursePicRepository.findById(courseId);
         return optional.get();
     }
 
+    //删除课程信息
     public ResponseResult deleteCoursePic(String courseId) {
         try {
             coursePicRepository.deleteById(courseId);

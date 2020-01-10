@@ -33,16 +33,18 @@ public class CourseController implements CourseControllerApi {
     //添加课程图片信息
     @Override
     @PostMapping("/coursepic/add")
-    public ResponseResult addCoursePic(@RequestParam("/courseId") String courseId, @RequestParam("pic") String pic) {
+    public ResponseResult addCoursePic(@RequestParam("courseId") String courseId, @RequestParam("pic") String pic) {
         return courseService.saveCoursePic(courseId,pic);
     }
 
+    //查询课程信息
     @Override
     @GetMapping("/coursepic/list/{courseId}")
     public CoursePic findCoursePic(@PathVariable("courseId") String courseId) {
         return courseService.findCoursepic(courseId);
     }
 
+    //删除课程信息
     @Override
     @DeleteMapping("/coursepic/delete") //？key/value形式传入
     public ResponseResult deleteCoursePic(@RequestParam("courseId") String courseId) {

@@ -5,6 +5,7 @@
       list-type="picture-card"
       :before-upload="setuploaddata"
       :on-success="handleSuccess"
+      :on-error="handleError"
       :file-list="fileList"
       :limit="picmax"
       :on-exceed="rejectupload"
@@ -29,7 +30,8 @@
         dialogVisible: false,
         fileList:[],
         uploadval:{filetag:"course",businesskey:"testbusinesskey"},//上传提交的额外的数据 ，将uploadval转成key/value提交给服务器
-        imgUrl:sysConfig.imgUrl
+        // imgUrl:sysConfig.imgUrl
+        imgUrl:'http://192.168.8.77/'
       }
     },
     methods: {
@@ -41,6 +43,22 @@
       setuploaddata(){
 
       },
+      //查询图片
+      list() {
+        courseApi.findCoursePicList(this.courseid).then((res) => {
+          console.log(res)
+          if (res.pic) {
+            let name = '图片';
+            let url = this.imgUrl + res.pic;
+            debugger
+            let fileId = res.courseid;
+            //先清空文件列表，再将图片放入文件列表
+            this.fileList = []
+            this.fileList.push({name: name, url: url, fileId: fileId});
+          }
+          console.log(this.fileList);
+        });
+      },
       //删除图片
       handleRemove(file, fileList) {
         console.log(file)
@@ -48,37 +66,19 @@
           courseApi.deleteCoursePic(this.courseid).then(res=>{
             if(res.success){
               //成功
-              resolve();
+              resolve(); //返回resolve(),页面删除图片，使其消失
+              this.$message.success("删除成功");
             }else{
               this.$message.error("删除失败");
               //失败
-             reject();
+              reject(); //返回reject( )，则页面不删除图片，不使其消失
             }
-
           })
         })
-
-        //调用服务端去删除课程图片信息，如果返回false，前端停止删除
-        //异步调用
-/*        return new Promise((resolve,rejct)=>{
-          courseApi.deleteCoursePic(this.courseid).then(res=>{
-            if(res.success){
-                //成功
-              resolve()
-            }else{
-              this.$message.error("删除失败");
-                //失败
-              rejct()
-            }
-
-          })
-        })*/
-
       },
       //上传成功的钩子方法
       handleSuccess(response, file, fileList){
         console.log(response)
-//        alert('上传成功')
         //调用课程管理的保存图片接口，将图片信息保存到课程管理数据库course_pic中
         //从response得到新的图片文件的地址
         if(response.success){
@@ -119,30 +119,8 @@
     mounted(){
       //课程id
       this.courseid = this.$route.params.courseid;
-      //查询课程
-      courseApi.findCoursePicList(this.courseid).then(res=>{
-          if(res && res.pic){
-              let imgUrl = this.imgUrl+res.pic;
-              //将图片地址设置到
-            this.fileList.push({name:'pic',url:imgUrl,fileId:res.pic})
-          }
-
-      }).catch(res=>{
-
-      })
-
-/*      this.testPromise(3).then(res=>{
-        alert(res)
-      }).catch(res=>{
-        alert(res)
-      })*/
-      //测试调用promise方法，then中写的成功后的回调方法，
-//      this.testPromise(3).then(res=>{
-//          alert(res)
-//      }).catch(res=>{//catch就是执行失败的回调方法
-//          alert("失败了。。。。。")
-//          alert(res)
-//      })
+      //查询图片
+     this.list();
     }
   }
 </script>
