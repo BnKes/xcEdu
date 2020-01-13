@@ -60,4 +60,11 @@ public class CmsPageController implements CmsPageControllerApi {
         return pageService.postPage(pageId);
     }
 
+    //如果有页面则更新，没有则添加
+    @Override
+    @PostMapping("/save")
+    public CmsPageResult save(@RequestBody  CmsPage cmsPage) {
+        return pageService.save(cmsPage);
+    }
+
 }

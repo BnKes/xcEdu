@@ -6,8 +6,8 @@ spring:
 #mongo配置
   data:
     mongodb:
-      uri:  mongodb://root:root@192.168.8.77:27017
-#      uri:  mongodb://root:root@192.168.1.148:27017
+#      uri:  mongodb://root:root@192.168.8.77:27017
+      uri:  mongodb://root:root@192.168.1.148:27017
       database: xc_cms
 #SpringMVC上传文件配置
   servlet:
@@ -27,8 +27,8 @@ xuecheng:
     connect_timeout_in_seconds: 5
     network_timeout_in_seconds: 30
     charset: UTF-8
-#    tracker_servers: 192.168.1.149:22122 #多个 trackerServer中间以逗号分隔
-    tracker_servers: 192.168.8.77:22122 #多个 trackerServer中间以逗号分隔
+    tracker_servers: 192.168.1.149:22122 #多个 trackerServer中间以逗号分隔
+#    tracker_servers: 192.168.8.77:22122 #多个 trackerServer中间以逗号分隔
 eureka:
   client:
     registerWithEureka: true #服务注册开关

@@ -34,11 +34,11 @@ public class GridFsTest {
     @Test
     public void testGridFs() throws FileNotFoundException {
         //要存储的文件
-        File file = new File("C:\\Users\\Administrator\\Desktop\\index_banner.ftl");
+        File file = new File("D:\\学习视频\\xcEdu\\xcEduService01\\test-freemarker\\src\\main\\resources\\templates\\course.ftl");
         //定义输入流
         FileInputStream inputStream = new FileInputStream(file);
         //向GridFs存储文件,返回文件id
-        ObjectId objectId = gridFsTemplate.store(inputStream, "轮播图测试文件test05", "");
+        ObjectId objectId = gridFsTemplate.store(inputStream, "课程详情模板文件", "");
         //得到文件id
         String fileId = objectId.toString();
         System.out.println(fileId);
@@ -54,7 +54,7 @@ public class GridFsTest {
     //读取.下载文件
     @Test
     public void queryFile() throws IOException {
-        String fileId = "5a7719d76abb5042987eec3a";
+        String fileId = "5e1b244db604e821c8e7be2b";
         //根据id查询文件
         GridFSFile gridFSFile = gridFsTemplate.findOne(Query.query(Criteria.where("_id").is(fileId)));
 

@@ -31,7 +31,8 @@
         fileList:[],
         uploadval:{filetag:"course",businesskey:"testbusinesskey"},//上传提交的额外的数据 ，将uploadval转成key/value提交给服务器
         // imgUrl:sysConfig.imgUrl
-        imgUrl:'http://192.168.8.77/'
+        // imgUrl:'http://192.168.8.77/'
+        imgUrl:'http://192.168.1.149/'
       }
     },
     methods: {

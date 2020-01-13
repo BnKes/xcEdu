@@ -2,8 +2,10 @@ package com.xuecheng.manage_course.controller;
 
 import com.xuecheng.api.cms.CourseControllerApi;
 import com.xuecheng.framework.domain.course.CoursePic;
+import com.xuecheng.framework.domain.course.CourseView;
 import com.xuecheng.framework.domain.course.Teachplan;
 import com.xuecheng.framework.domain.course.ext.TeachplanNode;
+import com.xuecheng.framework.domain.course.response.CoursePublishResult;
 import com.xuecheng.framework.model.response.ResponseResult;
 import com.xuecheng.manage_course.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +51,18 @@ public class CourseController implements CourseControllerApi {
     @DeleteMapping("/coursepic/delete") //？key/value形式传入
     public ResponseResult deleteCoursePic(@RequestParam("courseId") String courseId) {
         return courseService.deleteCoursePic(courseId);
+    }
+
+    @Override
+    @GetMapping("/courseview/{id}")
+    public CourseView couseview(@PathVariable("id") String id) {
+        return courseService.getCoruseView(id);
+    }
+
+    //课程预览
+    @Override
+    @PostMapping("/preview/{id}")
+    public CoursePublishResult preview(@PathVariable("id") String id) {
+        return courseService.preview(id);
     }
 }

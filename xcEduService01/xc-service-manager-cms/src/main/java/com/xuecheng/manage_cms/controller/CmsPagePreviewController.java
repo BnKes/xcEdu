@@ -18,12 +18,15 @@ public class CmsPagePreviewController extends BaseController {
     @Autowired
     PageService pageService;
 
+
+    //页面预览
     @RequestMapping(value = "/cms/preview/{pageId}",method = RequestMethod.GET)
     public void preview(@PathVariable("pageId")String pageId){
         String pageHtml = pageService.getPageHtml(pageId);
         if(StringUtils.isNotEmpty(pageHtml)){
             try {
                 ServletOutputStream outputStream = response.getOutputStream();
+                response.setHeader("Content-type","text/html;charset=utf-8");
                 outputStream.write(pageHtml.getBytes("UTF-8"));//输出到页面
             } catch (IOException e) {
                 e.printStackTrace();

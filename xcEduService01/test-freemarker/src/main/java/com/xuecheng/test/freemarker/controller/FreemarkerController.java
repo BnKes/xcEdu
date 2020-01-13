@@ -65,4 +65,14 @@ public class FreemarkerController {
         //返回模板文件名称
         return "test1";
     }
+
+    //课程详情页面测试
+    @RequestMapping("/course")
+    public String course(Map<String,Object> map){
+        ResponseEntity<Map> forEntity = restTemplate
+                .getForEntity("http://localhost:31200/course/courseview/4028e58161bcf7f40161bcf8b77c0000", Map.class);
+        Map body = forEntity.getBody();
+        map.putAll(body);
+        return "course";
+    }
 }

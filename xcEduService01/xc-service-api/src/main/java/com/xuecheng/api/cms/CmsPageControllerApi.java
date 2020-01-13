@@ -39,4 +39,9 @@ public interface CmsPageControllerApi {
     //发布页面
     @ApiOperation("发布页面")
     public ResponseResult post(String pageId);
+
+
+    //保存课程详细信息静态化文件
+    @ApiOperation("保存课程详细信息静态化文件")
+    public CmsPageResult save( CmsPage cmsPage);
 }
