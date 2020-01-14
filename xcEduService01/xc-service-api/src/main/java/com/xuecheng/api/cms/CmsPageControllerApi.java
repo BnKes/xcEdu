@@ -4,6 +4,7 @@ package com.xuecheng.api.cms;
 import com.xuecheng.framework.domain.cms.CmsPage;
 import com.xuecheng.framework.domain.cms.request.QueryPageRequest;
 import com.xuecheng.framework.domain.cms.response.CmsPageResult;
+import com.xuecheng.framework.domain.cms.response.CmsPostPageResult;
 import com.xuecheng.framework.model.response.QueryResponseResult;
 import com.xuecheng.framework.model.response.ResponseResult;
 import io.swagger.annotations.Api;
@@ -40,8 +41,16 @@ public interface CmsPageControllerApi {
     @ApiOperation("发布页面")
     public ResponseResult post(String pageId);
 
-
     //保存课程详细信息静态化文件
     @ApiOperation("保存课程详细信息静态化文件")
     public CmsPageResult save( CmsPage cmsPage);
+
+    //一键发布页面
+    @ApiOperation("一键发布页面")
+    public CmsPostPageResult postPageQuick(CmsPage cmsPage);
+
+
+
+
+
 }

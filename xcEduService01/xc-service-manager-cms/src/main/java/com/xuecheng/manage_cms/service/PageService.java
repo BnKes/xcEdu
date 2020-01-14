@@ -5,17 +5,17 @@ import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSDownloadStream;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import com.xuecheng.framework.domain.cms.CmsPage;
+import com.xuecheng.framework.domain.cms.CmsSite;
 import com.xuecheng.framework.domain.cms.CmsTemplate;
 import com.xuecheng.framework.domain.cms.request.QueryPageRequest;
 import com.xuecheng.framework.domain.cms.response.CmsCode;
 import com.xuecheng.framework.domain.cms.response.CmsPageResult;
+import com.xuecheng.framework.domain.cms.response.CmsPostPageResult;
 import com.xuecheng.framework.exception.ExceptionCast;
-import com.xuecheng.framework.model.response.CommonCode;
-import com.xuecheng.framework.model.response.QueryResponseResult;
-import com.xuecheng.framework.model.response.QueryResult;
-import com.xuecheng.framework.model.response.ResponseResult;
+import com.xuecheng.framework.model.response.*;
 import com.xuecheng.manage_cms.config.RabbitmqConfig;
 import com.xuecheng.manage_cms.dao.CmsPageRepository;
+import com.xuecheng.manage_cms.dao.CmsSiteRepository;
 import com.xuecheng.manage_cms.dao.CmsTemplateRepository;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
@@ -61,6 +61,9 @@ public class PageService {
 
     @Autowired
     RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    CmsSiteRepository cmsSiteRepository;
 
     public QueryResponseResult findList(int page, int size, QueryPageRequest queryPageRequest){
         if(queryPageRequest==null){
@@ -344,5 +347,43 @@ public class PageService {
         }
         return this.add(cmsPage);
 
+    }
+
+    //一键发布页面
+    public CmsPostPageResult postPageQuick(CmsPage cmsPage) {
+        //添加页面
+        CmsPageResult save = this.save(cmsPage);
+        if (!save.isSuccess()){
+            return new CmsPostPageResult(CommonCode.FAIL,null);
+        }
+        CmsPage cmsPage1 = save.getCmsPage();
+        //要发布的页面id
+        String pageId = cmsPage1.getPageId();
+        //执行页面发布（包括先静态化、保存GridFS，向MQ发送消息）
+        ResponseResult responseResult = this.postPage(pageId);
+        if (!responseResult.isSuccess()){
+            return new CmsPostPageResult(CommonCode.FAIL,null);
+        }
+
+        //得到页面的url
+        //页面url=站点域名+站点webpath+页面webpath+页面名称
+        //查询站点信息
+        String siteId = cmsPage1.getSiteId();
+        Optional<CmsSite> cmsSiteoptional = cmsSiteRepository.findById(siteId);
+        if (!cmsSiteoptional.isPresent()){
+            ExceptionCast.cast(CmsCode.CMS_SITE_NOTEXISTS);
+        }
+        CmsSite cmsSite = cmsSiteoptional.get();
+        //站点域名
+        String siteDomain = cmsSite.getSiteDomain();
+        //站点web路径
+        String siteWebPath = cmsSite.getSiteWebPath();
+        //页面web路径
+        String pageWebPath = cmsPage1.getPageWebPath();
+        //页面名称
+        String pageName = cmsPage1.getPageName();
+        //页面的访问地址
+        String pageUrl = siteDomain + siteWebPath + pageWebPath + pageName;
+        return new CmsPostPageResult(CommonCode.SUCCESS,pageUrl);
     }
 }
