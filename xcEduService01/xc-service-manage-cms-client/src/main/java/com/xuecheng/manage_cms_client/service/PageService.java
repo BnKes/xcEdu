@@ -46,7 +46,7 @@ public class PageService {
         CmsSite cmsSite = this.getCmsSiteById(cmsPage.getSiteId());
 
         //页面物理路径
-        String pagePath = cmsSite.getSitePhysicalPath() + cmsPage.getPagePhysicalPath() + cmsPage.getPageWebPath();
+        String pagePath = cmsSite.getSitePhysicalPath() + cmsPage.getPagePhysicalPath() + cmsPage.getPageName() ;
 
         //查询静态文件,将数据库中文件下载保存到物理路径
         String htmlFileId = cmsPage.getHtmlFileId();

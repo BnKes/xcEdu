@@ -5,8 +5,8 @@ spring:
     name: xc-service-manage-course
   datasource:
     druid:
-      url: jdbc:mysql://192.168.8.77:3305/xc_course?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
-#      url: jdbc:mysql://192.168.1.148:3305/xc_course?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
+#      url: jdbc:mysql://192.168.8.77:3305/xc_course?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
+      url: jdbc:mysql://192.168.1.148:3305/xc_course?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
       username: root
       password: 123456
       driverClassName: com.mysql.cj.jdbc.Driver
@@ -40,6 +40,6 @@ course-publish:
   siteId: 5a751fab6abb5044e0d19ea1
   templateId: 5aec5dd70e661808240ab7a6
   previewUrl: http://localhost/cms/preview/
-  pageWebPath: /
+  pageWebPath:
   pagePhysicalPath: /course/detail/
   dataUrlPre: http://localhost:31200/course/courseview/

@@ -55,8 +55,8 @@ let sysConfig = require('@/../config/sysConfig')
             pic: ''
           },
           {
-            id: 'test02',
-            name: 'test02',
+            id: '4028e581617f945f01617f9dabc40000',
+            name: 'Bootstrap开发框架',
             pic: ''
           }
         ],
